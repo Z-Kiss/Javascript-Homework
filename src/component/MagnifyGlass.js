@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
+import {PropContext} from "../context/PropProvider";
 
-const MagnifyGlass = ({image, cursorPosition, zoomLevel}) => {
+const MagnifyGlass = ({image}) => {
 
-    return (
+    const {cursorPosition, zoomLevel} = useContext(PropContext)
+
+    return (<>
         <div
             style={{
-
                 position: 'absolute',
                 top: cursorPosition.y-50,
                 left: cursorPosition.x-50,
@@ -18,13 +20,11 @@ const MagnifyGlass = ({image, cursorPosition, zoomLevel}) => {
                 backgroundPositionX: 100/768*cursorPosition.x + '%',
                 backgroundPositionY: 100/432*cursorPosition.y + '%',
                 backgroundSize:768*zoomLevel+"px"+" "+432*zoomLevel+"px",
-
             }}
         >
-
         </div>
+        </>
     );
-
 };
 
 export default MagnifyGlass;
