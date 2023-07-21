@@ -22,4 +22,12 @@ npm start
 ```
 ## State
 
-Currently the base task is finished and the Extra task missing the inpuit controlling feature, but working on it.
+The base task and the Extra task finished.
+
+For the keyboard controll first you need to select which color do you want to change with the corresponding button:
+
+"r" for Red
+"g" for Green
+"b" for Blue
+
+then you can change the value by pressing either the RightArrow or LeftArrow button.
