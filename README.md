@@ -26,8 +26,8 @@ The base task and the Extra task finished.
 
 For the keyboard controll first you need to select which color do you want to change with the corresponding button:
 
-"r" for Red
-"g" for Green
-"b" for Blue
+- "r" for Red
+- "g" for Green
+- "b" for Blue
 
 then you can change the value by pressing either the RightArrow or LeftArrow button.
