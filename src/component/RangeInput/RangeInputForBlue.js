@@ -1,15 +1,14 @@
 import {useContext} from "react";
-import {RgbContext, useHandleBlue} from "../../context/RgbProvider";
-
+import {RgbContext, useHandleColorsValue,} from "../../context/RgbProvider";
 
 export default function RangeInputForBlue(){
-    const {blue} = useContext(RgbContext);
-    const handleBlue = useHandleBlue();
+    const {colors} = useContext(RgbContext);
+    const handleColorsValue = useHandleColorsValue();
 
     return(
         <>
         <label htmlFor="input-blue"> Blue </label>
-        <input id={"input-blue"} type="range"  min={-250} max={250} value={blue} step={25}  onChange={(e) => handleBlue(e)}/>
+        <input id={"input-blue"} type="range" name={"blue"}  min={-250} max={250} value={colors.blue} step={25}  onChange={(e) => handleColorsValue(e)}/>
         </>
     )
 }

@@ -2,12 +2,10 @@ import {useContext, useState} from "react";
 import {MagnifyGlassPropContext, useHandleCursorPosition} from "../context/MagnifyGlassPropProvider";
 import MagnifyGlass from "./MagnifyGlass";
 
-
 export default function BaseImage() {
     const [showCircle, setShowCircle] = useState(true);
     const handleCursorPosition = useHandleCursorPosition();
     const {saturationLevel, cursorPosition, zoomLevel} = useContext(MagnifyGlassPropContext);
-
 
     return (
         <>
