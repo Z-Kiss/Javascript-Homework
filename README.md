@@ -20,3 +20,6 @@ npm install
 ```
 npm start
 ```
+## State
+
+Currently the base task is finished and the Extra task missing the inpuit controlling feature, but working on it.
