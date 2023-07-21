@@ -1,24 +1,27 @@
 import {useContext, useState} from "react";
-import {PropContext, useHandleCursorPosition} from "../context/PropProvider";
+import {MagnifyGlassPropContext, useHandleCursorPosition} from "../context/MagnifyGlassPropProvider";
 import MagnifyGlass from "./MagnifyGlass";
 
-export default function BaseImage(){
+
+export default function BaseImage() {
     const [showCircle, setShowCircle] = useState(true);
     const handleCursorPosition = useHandleCursorPosition();
-    const {saturationLevel,cursorPosition,zoomLevel } = useContext(PropContext);
+    const {saturationLevel, cursorPosition, zoomLevel} = useContext(MagnifyGlassPropContext);
 
-    return(
+
+    return (
         <>
-        <img
-            onMouseMove={(e) => handleCursorPosition(e)}
-            onMouseEnter={() => setShowCircle(true)}
-            onMouseLeave={() => setShowCircle(false)}
-            id={"baseImage"}
-            src={"./images/pic.jpg"}
-            alt=""
-            style={{width: "768px", height: "432px", filter: `saturate(${saturationLevel}%)`}}
-        />
-        {showCircle && <MagnifyGlass image={"./images/pic.jpg"} cursorPosition={cursorPosition} zoomLevel={zoomLevel}/>}
-    </>
+            <img
+                onMouseMove={(e) => handleCursorPosition(e)}
+                onMouseEnter={() => setShowCircle(true)}
+                onMouseLeave={() => setShowCircle(false)}
+                id={"baseImage"}
+                src={"./images/pic.jpg"}
+                alt=""
+                style={{width: "768px", height: "432px", filter: `saturate(${saturationLevel}%)`}}
+            />
+            {showCircle &&
+                <MagnifyGlass image={"./images/pic.jpg"} cursorPosition={cursorPosition} zoomLevel={zoomLevel}/>}
+        </>
     )
 }
