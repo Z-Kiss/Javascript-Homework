@@ -1,16 +1,66 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import {MagnifyGlassPropContext} from "./context/MagnifyGlassPropProvider";
 import RangeInputForZoom from "./component/RangeInput/RangeInputForZoom";
 import RangeInputForRed from "./component/RangeInput/RangeInputForRed";
 import RangeInputForGreen from "./component/RangeInput/RangeInputForGreen";
 import RangeInputForBlue from "./component/RangeInput/RangeInputForBlue";
 import CanvasImage from "./component/CanvasImage";
+import {RgbContext} from "./context/RgbProvider";
 
 
 export default function App() {
     const {zoomLevel, setZoomLevel} = useContext(MagnifyGlassPropContext);
+    const {colors, setColors} = useContext(RgbContext);
+    let activeInputName;
 
-    document.addEventListener('wheel', (e) => handleMouseWheelEvent(e));
+    useEffect(() => {
+        document.addEventListener('keyup', (e) => handleKeyUp(e));
+        document.addEventListener('wheel', (e) => handleMouseWheelEvent(e));
+        return () => {
+            document.removeEventListener('keyup', (e) => handleKeyUp(e));
+            document.removeEventListener('wheel', (e) => handleMouseWheelEvent(e));
+        };
+    }, []);
+
+
+    const switchActiveRangeInput = (e) => {
+        switch (e.key) {
+            case "r" :
+                activeInputName = "red";
+                break;
+            case "g" :
+                activeInputName = "green";
+                break;
+            case "b" :
+                activeInputName = "blue";
+                break;
+            default:
+                break;
+        }
+    }
+
+    const handleKeyUp = (e) => {
+        e.preventDefault();
+        switchActiveRangeInput(e);
+        handleColorValues(e);
+    }
+
+    const handleColorValues = (e) => {
+        e.preventDefault();
+        if (e.key === "ArrowLeft") {
+            if (colors[activeInputName] > -225) {
+                setColors(prevState => ({
+                    ...prevState, [activeInputName]: prevState[activeInputName] - 25
+                }));
+            }
+        } else if (e.key === "ArrowRight") {
+            if (colors[activeInputName] < 225) {
+                setColors(prevState => ({
+                    ...prevState, [activeInputName]: prevState[activeInputName] + 25
+                }));
+            }
+        }
+    }
 
     const handleMouseWheelEvent = (e) => {
         if (e.deltaY < 0) {
@@ -31,13 +81,11 @@ export default function App() {
                 <RangeInputForZoom/>
             </div>
             <div style={{display: "flex", flexDirection: "column", width: "45%", paddingTop: "20px"}}>
-                <RangeInputForRed  />
-                <RangeInputForGreen />
-                <RangeInputForBlue  />
+                <RangeInputForRed/>
+                <RangeInputForGreen/>
+                <RangeInputForBlue/>
             </div>
         </div>
 
     )
-}
-;
-
+};

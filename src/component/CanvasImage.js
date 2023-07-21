@@ -5,7 +5,7 @@ import {useHandleCursorPosition} from "../context/MagnifyGlassPropProvider";
 
 const CanvasImage = ({imageUrl}) => {
     const canvasRef = useRef(null)
-    const {red, blue, green} = useContext(RgbContext)
+    const {colors} = useContext(RgbContext)
     const [canvasImagUrl, setCanvasImageUrl] = useState("")
     const [showCircle, setShowCircle] = useState(false);
     const handleCursorPosition = useHandleCursorPosition();
@@ -21,16 +21,16 @@ const CanvasImage = ({imageUrl}) => {
             const data = imageData.data
             for (let i = 0; i < data.length; i += 4) {
                 // red
-                data[i] = data[i] + red * 1;
+                data[i] = data[i] + colors.red * 1;
                 // green
-                data[i + 1] = data[i + 1] + green * 1;
+                data[i + 1] = data[i + 1] + colors.green * 1;
                 // blue
-                data[i + 2] = data[i + 2] + blue * 1;
+                data[i + 2] = data[i + 2] + colors.blue * 1;
             }
             ctx.putImageData(imageData, 0, 0);
             setCanvasImageUrl(canvas.toDataURL());
         };
-    }, [imageUrl, red, green, blue]);
+    }, [imageUrl, colors]);
 
     return (
         <div

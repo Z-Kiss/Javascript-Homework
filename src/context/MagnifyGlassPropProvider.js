@@ -2,7 +2,6 @@ import {createContext, useContext, useState} from "react";
 
 export const MagnifyGlassPropContext = createContext({});
 
-
 const MagnifyGlassPropProvider = ({children}) =>{
     const [cursorPosition, setCursorPosition] = useState({x: 0, y: 0});
     const [zoomLevel, setZoomLevel] = useState(2);
