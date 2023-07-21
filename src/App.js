@@ -13,14 +13,14 @@ export default function App() {
     const {colors, setColors} = useContext(RgbContext);
     let activeInputName;
 
+    document.addEventListener('wheel', (e) => handleMouseWheelEvent(e));
     useEffect(() => {
         document.addEventListener('keyup', (e) => handleKeyUp(e));
-        document.addEventListener('wheel', (e) => handleMouseWheelEvent(e));
         return () => {
             document.removeEventListener('keyup', (e) => handleKeyUp(e));
-            document.removeEventListener('wheel', (e) => handleMouseWheelEvent(e));
         };
     }, []);
+
 
 
     const switchActiveRangeInput = (e) => {
