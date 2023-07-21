@@ -1,8 +1,8 @@
 import {useContext} from "react";
-import {PropContext, useHandleSaturationLevel, useHandleZoomLevel} from "../../context/PropProvider";
+import {MagnifyGlassPropContext, useHandleSaturationLevel} from "../../context/MagnifyGlassPropProvider";
 
 export default function RangeInputForSaturation(){
-    const {saturationLevel} = useContext(PropContext)
+    const {saturationLevel} = useContext(MagnifyGlassPropContext);
     const handleSaturationLevel = useHandleSaturationLevel();
 
     return(

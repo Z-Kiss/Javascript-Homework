@@ -3,14 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import PropProvider from "./context/PropProvider";
+import MagnifyGlassPropProvider from "./context/MagnifyGlassPropProvider";
+import RgbProvider from "./context/RgbProvider";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <PropProvider>
-        <App/>
-    </PropProvider>
-
+    <RgbProvider>
+        <MagnifyGlassPropProvider>
+            <App/>
+        </MagnifyGlassPropProvider>
+    </RgbProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
